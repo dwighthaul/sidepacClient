@@ -1,0 +1,51 @@
+<div class="container">
+  <div class="row">
+    <app-onglets [onglets]="onglets" (ongletChange)="ongletActif=$event"></app-onglets>
+  </div>
+</div>
+<hr>
+
+<div class="form-group" *ngIf="ongletActif?.id === 1">
+  <div class="container">
+    <div class="row">
+      <div class="col-6">
+        <label for="description">Description</label>
+        <input [disabled]="!estEditable" class="form-control" type="text" name="description"
+          [(ngModel)]="demande.description" required />
+      </div>
+      <div class="col-6">
+        <label for="status">Status</label>
+        <input [readonly]="true" readonly disabled class="form-control" type="text" name="status"
+          [(ngModel)]="demande._dernierStatus" required />
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-6">
+        <label for="infoDemande">Iban</label>
+        <select [disabled]="!estEditable" class="form-select" [(ngModel)]="demande.iban"
+          aria-label="Default select example">
+          <option *ngFor="let iban of listeDonnees.ibans" [value]="iban.iban">{{ iban.libelle }}</option>
+        </select>
+      </div>
+      <div class="col-6">
+        <label for="infoDemande">Tiers</label>
+        <input class="form-control" readonly disabled type="text" name="infoDemande" [(ngModel)]="demande._tiersNom"
+          required />
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <br>
+        <button class="large btn btn-primary" (click)="afficherRechercheTiers()">Rechercher un tiers</button>
+        <br>
+      </div>
+    </div>
+
+
+  </div>
+</div>
+<div class="container" *ngIf="ongletActif?.id === 3">
+  <div class="row">
+    <app-workflow [demande]="demande"></app-workflow>
+  </div>
+</div>

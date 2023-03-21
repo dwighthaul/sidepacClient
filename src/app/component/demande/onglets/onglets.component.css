@@ -1,0 +1,35 @@
+.steps {
+  position: relative;
+  margin-bottom: 30px;
+  counter-reset: step;
+
+}
+.steps li {
+  cursor: pointer;
+  list-style-type: none;
+  text-align: center;
+  width: 33%;
+  position: relative;
+  float: left;
+  z-index: 10;
+}
+
+.steps li:before {
+  display: block;
+  content: counter(step);
+  counter-increment: step;
+  width: 70px;
+  height: 70px;
+  background-color: grey;
+  line-height: 70px;
+  border-radius: 70px;
+  font-size: 16px;
+  color: #fff;
+  text-align: center;
+  font-weight: 700;
+  margin: 0 auto 8px auto;
+}
+
+.steps li.active:before {
+  background-color: #019875;
+}

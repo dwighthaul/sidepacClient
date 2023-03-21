@@ -1,0 +1,11 @@
+<div class="alert alert-warning">
+  <span>{{objectNom}}</span>
+  <div *ngIf="isDisplayDebug">
+    <button class="btn btn-info" (click)="hide()">Hide</button>
+    <pre>{{ objectDebug | json }}</pre>
+  </div>
+  <div *ngIf="!isDisplayDebug">
+    <button class="btn btn-info" (click)="display()">Display</button>
+  </div>
+
+</div>

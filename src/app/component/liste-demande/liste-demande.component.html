@@ -1,0 +1,50 @@
+<div class="container">
+  <div class="row">
+    <div class="col-4" *ngFor="let dashboard of dashboards">
+      <app-dashboard [dashboard]="dashboard">
+      </app-dashboard>
+    </div>
+  </div>
+</div>
+<hr>
+
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Service</th>
+      <th>Description</th>
+      <th>Tiers</th>
+      <th>Iban</th>
+      <th>Status</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let demande of demandes">
+      <td>{{ demande.id }}</td>
+      <td>{{ demande.service }}</td>
+      <td>{{ demande.description}}</td>
+      <td>{{ demande.nomTiers }}</td>
+      <td>{{ demande.iban }}</td>
+      <td>{{ demande.dernierStatus }}</td>
+      <td><button class="btn btn-info" (click)="afficherDetail(demande.id)">Detail <i
+            class="fa-solid fa-circle-info"></i></button></td>
+    </tr>
+  </tbody>
+</table>
+
+
+<ng-template #detailDemandeModale let-modal>
+  <div *ngIf="demande">
+    <div class="modal-header">
+      <h2>Détail de la demande n°{{demande.id}}</h2>
+      <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss()"></button>
+    </div>
+    <div class="modal-body">
+      <app-detail [estEditable]="false" [demande]="demande" [listeDonnees]="listeDonnees"></app-detail>
+      <app-buttons [demande]="demande"></app-buttons>
+    </div>
+  </div>
+</ng-template>
