@@ -1,8 +1,7 @@
-import { Tiers } from './../../../model/sidepa';
 import { Onglet } from './../../../model/structure/Onglet';
 import { ListeDonnees } from './../../../model/listeDonnees';
 import { Component, Input, OnInit, TemplateRef, ViewChild } from '@angular/core';
-import { Demande } from 'src/app/model/sidepa';
+import { Tiers, Demande } from 'src/app/model/sidepa';
 import { NgbModal, NgbModalConfig, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({

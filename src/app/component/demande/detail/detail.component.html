@@ -61,7 +61,6 @@
 <ng-template #rechercheTiersModale let-modal>
   <div class="modal-header">
     <h2>Recherche de tiers</h2>
-    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss()"></button>
   </div>
   <div class="modal-body">
     <app-recherche-tiers (tiersSelectionneEvent)="updateTiers($event)"></app-recherche-tiers>
