@@ -1,12 +1,11 @@
-import { Dashboard } from './../../model/structure/Dashboard';
+import { Dashboard } from 'src/app/model/structure/Dashboard';
 import { Component, Injectable, OnInit, TemplateRef, ViewChild, ViewContainerRef } from '@angular/core';
 import { NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
-import { Iban } from 'src/app/model/Iban';
 import { ListeDonnees } from 'src/app/model/listeDonnees';
 
-import { DemandeDTO } from './../../model/dto/demandeDTO.model';
-import { Demande, Service } from './../../model/sidepa';
-import { BackService } from './../../service/back.service';
+import { DemandeDTO } from 'src/app/model/dto/demandeDTO.model';
+import { Demande, Service } from 'src/app/model/sidepa';
+import { BackService } from 'src/app/service/back.service';
 
 @Component({
   selector: 'app-liste-demande',
@@ -92,7 +91,6 @@ export class ListeDemandeComponent implements OnInit {
       }
     );
     this.backService.recuperationDemandeDetail(idDemande, (demande: Demande) => {
-      this.listeDonnees.ibans = [new Iban(demande.codeIban, demande.iban)];
       this.listeDonnees.services = [demande.service];
       this.demande = demande
 

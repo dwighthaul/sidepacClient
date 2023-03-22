@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-import { Demande } from '../model/sidepa';
+import { Demande, Service, Tiers } from '../model/sidepa';
 import { DemandeDTO } from './../model/dto/demandeDTO.model';
 
 @Injectable({
@@ -12,6 +12,19 @@ export class BackService {
 
 
   constructor(private http: HttpClient) { }
+
+
+  recuperationTiers(recherche: string, callback: Function) {
+    return this.http.get<Tiers[]>('http://localhost:8080/data/tiers/trouverParNumeroOuNom?numeroOuNom=' + recherche).subscribe((data: Tiers[]) => {
+      callback(data);
+    });
+  }
+
+  recuperationServices(callback: Function) {
+    return this.http.get<Service[]>('http://localhost:8080/data/service/all').subscribe((data: Service[]) => {
+      callback(data);
+    });
+  }
 
   recuperationDemandesSimple() {
     return this.http.get<DemandeDTO[]>('http://localhost:8080/data/demande/allSimple');

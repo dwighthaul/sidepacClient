@@ -1,11 +1,16 @@
-<div class="alert alert-warning">
-  <span>{{objectNom}}</span>
+<div *ngIf="estDebug" class="alert alert-dark">
+  <ul class="nav nav-tabs">
+    <li class="nav-item">
+      <a class="nav-link" [ngClass]="{'active' : !isDisplayDebug}" (click)="hide()">Hide <span>{{objectNom}}</span></a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" [ngClass]="{'active' : isDisplayDebug}" (click)="display()">Display
+        <span>{{objectNom}}</span></a>
+    </li>
+    <li class="nav-item">
+  </ul>
   <div *ngIf="isDisplayDebug">
-    <button class="btn btn-info" (click)="hide()">Hide</button>
     <pre>{{ objectDebug | json }}</pre>
-  </div>
-  <div *ngIf="!isDisplayDebug">
-    <button class="btn btn-info" (click)="display()">Display</button>
   </div>
 
 </div>

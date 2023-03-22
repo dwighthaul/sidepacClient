@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-debug',
@@ -7,7 +8,8 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class DebugComponent implements OnInit {
   isDisplayDebug = false;
-  constructor() { }
+  estDebug = false;
+  constructor(private route: ActivatedRoute) { }
 
   @Input()
   public objectDebug: any
@@ -16,6 +18,12 @@ export class DebugComponent implements OnInit {
   public objectNom!: string;
 
   ngOnInit(): void {
+    this.route.queryParams
+      .subscribe(params => {
+        console.log(params);
+        this.estDebug = (params['estDebug']) ? true : false;
+      }
+      );
   }
 
   display() {

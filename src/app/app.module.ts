@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { DetailComponent } from './component/demande/detail/detail.component';
@@ -14,6 +15,10 @@ import { AngulardefaultComponent } from './default/angulardefault/angulardefault
 import { WorkflowComponent } from './component/demande/workflow/workflow.component';
 import { NavigationComponent } from './component/structure/navigation/navigation.component';
 import { DashboardComponent } from './component/demande/structure/dashboard/dashboard.component';
+import { CreationComponent } from './pages/demande/creation/creation.component';
+import { ListeComponent } from './pages/demande/liste/liste.component';
+import { AccueilComponent } from './pages/accueil/accueil.component';
+import { RechercheTiersComponent } from './component/demande/structure/recherche-tiers/recherche-tiers.component';
 
 @NgModule({
   declarations: [
@@ -26,13 +31,23 @@ import { DashboardComponent } from './component/demande/structure/dashboard/dash
     OngletsComponent,
     WorkflowComponent,
     NavigationComponent,
-    DashboardComponent
+    DashboardComponent,
+    CreationComponent,
+    ListeComponent,
+    AccueilComponent,
+    RechercheTiersComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     NgbModule,
-    FormsModule],
+    FormsModule,
+    RouterModule.forRoot([
+      { path: 'demande_creation', component: CreationComponent },
+      { path: 'demande_liste', component: ListeDemandeComponent },
+
+    ])
+  ],
   providers: [HttpClientModule],
   bootstrap: [AppComponent]
 })

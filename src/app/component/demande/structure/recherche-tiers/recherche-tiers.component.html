@@ -1,0 +1,71 @@
+<div class="container">
+  <div class="row">
+    <div class="col-10">
+      <input autofocus class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"
+        (keyup.enter)="rechercherTiers()" [(ngModel)]="filtreRecherche">
+    </div>
+    <div class="col-2">
+      <button [disabled]="!filtreRecherche || filtreRecherche ===''" class="btn btn-outline-success my-2 my-sm-0"
+        type="submit" (click)="rechercherTiers()">Search</button>
+    </div>
+  </div>
+  <div class="row">
+    <div *ngIf="listeTiers && listeTiers.length === 0" class="alert alert-warning">
+      Aucun resultat trouvé !
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-6">
+      <div *ngIf="listeTiers">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Numéro</th>
+              <th>Nom</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let tiers of listeTiers" (click)="selectionnerTiers(tiers)">
+              <td>{{ tiers.numeroTiers }}</td>
+              <td>{{ tiers.nomOuRaisonSocial }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="col-6">
+      <div *ngIf="tiersSelectionne">
+        <h3>Détail du tiers {{ tiersSelectionne.numeroTiers }}</h3>
+        <div class="row">
+          <div class="col-6">
+            <label for="nomOuRaisonSocial">Nom</label>
+            <input disabled class="form-control" type="text" name="description"
+              [ngModel]="tiersSelectionne.nomOuRaisonSocial" />
+          </div>
+          <div class="col-6">
+            <label for="prenom">Prénom</label>
+            <input disabled class="form-control" type="text" name="prenom" [ngModel]="tiersSelectionne.prenom" />
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <label for="adresse">Adresse</label>
+            <input disabled class="form-control" type="text" name="adresse" [ngModel]="tiersSelectionne.adresse" />
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-6">
+            <label for="prenom">Iban</label>
+            <input disabled class="form-control" type="text" name="iban" [ngModel]="tiersSelectionne.iban" />
+          </div>
+          <div class="col-6">
+            <label for="codeIban">Code Iban</label>
+            <input disabled class="form-control" type="text" name="codeIban" [ngModel]="tiersSelectionne.codeIban" />
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <hr>
+</div>

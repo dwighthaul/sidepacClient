@@ -1,10 +1,10 @@
+<app-debug [objectDebug]="demande" [objectNom]="'demande'"></app-debug>
 <div class="container">
   <div class="row">
     <app-onglets [onglets]="onglets" (ongletChange)="ongletActif=$event"></app-onglets>
   </div>
 </div>
 <hr>
-
 <div class="form-group" *ngIf="ongletActif?.id === 1">
   <div class="container">
     <div class="row">
@@ -25,38 +25,58 @@
         <label for="description">Service</label>
         <select [disabled]="!estEditable" class="form-select" [(ngModel)]="demande.service.id"
           aria-label="Default select example">
-          <option *ngFor="let service of listeDonnees.services" [value]="service.id">{{ service.libelle }}</option>
+          <option *ngFor="let service of listeDonnees.services" [value]="service.id">{{ service.path }}</option>
         </select>
       </div>
     </div>
 
     <div class="row">
-      <div class="col-6">
-        <label for="infoDemande">Iban</label>
-        <select [disabled]="!estEditable" class="form-select" [(ngModel)]="demande.iban"
-          aria-label="Default select example">
-          <option *ngFor="let iban of listeDonnees.ibans" [value]="iban.iban">{{ iban.libelle }}</option>
-        </select>
-      </div>
       <div class="col-6">
         <label for="infoDemande">Tiers</label>
         <input class="form-control" readonly disabled type="text" name="infoDemande" [(ngModel)]="demande._tiersNom"
           required />
       </div>
+      <div class="col-6">
+        <label for="iban">Iban</label>
+        <input class="form-control" readonly disabled type="text" name="iban" [(ngModel)]="demande._ibanDetail"
+          required />
+      </div>
     </div>
-    <div class="row">
+    <div class="row" *ngIf="estEditable">
       <div class="col-12">
         <br>
-        <button class="large btn btn-primary" (click)="afficherRechercheTiers()">Rechercher un tiers</button>
+        <button class="large btn btn-success" (click)="afficherRechercheTiers()">Rechercher un tiers</button>
         <br>
       </div>
     </div>
-
-
   </div>
 </div>
+
 <div class="container" *ngIf="ongletActif?.id === 3">
   <div class="row">
     <app-workflow [demande]="demande"></app-workflow>
   </div>
 </div>
+
+<ng-template #rechercheTiersModale let-modal>
+  <div class="modal-header">
+    <h2>Recherche de tiers</h2>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss()"></button>
+  </div>
+  <div class="modal-body">
+    <app-recherche-tiers (tiersSelectionneEvent)="updateTiers($event)"></app-recherche-tiers>
+
+    <div class="row">
+      <div class="col-6">
+        <button class="btn btn-outline-success my-2 my-sm-0 large" (click)="modal.dismiss()">Fermer</button>
+      </div>
+      <div class="col-6">
+        <button [disabled]="!tiersSelectionneRecherche" class="btn btn-success my-2 my-sm-0 large"
+          (click)="validerSelectionTiers()">Selectionner le
+          tiers</button>
+
+      </div>
+    </div>
+  </div>
+
+</ng-template>
