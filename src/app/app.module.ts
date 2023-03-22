@@ -19,6 +19,7 @@ import { CreationComponent } from './pages/demande/creation/creation.component';
 import { ListeComponent } from './pages/demande/liste/liste.component';
 import { AccueilComponent } from './pages/accueil/accueil.component';
 import { RechercheTiersComponent } from './component/demande/structure/recherche-tiers/recherche-tiers.component';
+import { ServicesComponent } from './pages/referentiel/services/services.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { RechercheTiersComponent } from './component/demande/structure/recherche
     CreationComponent,
     ListeComponent,
     AccueilComponent,
-    RechercheTiersComponent
+    RechercheTiersComponent,
+    ServicesComponent
   ],
   imports: [
     BrowserModule,
@@ -43,6 +45,7 @@ import { RechercheTiersComponent } from './component/demande/structure/recherche
     NgbModule,
     FormsModule,
     RouterModule.forRoot([
+      { path: 'refServices', component: ServicesComponent },
       { path: 'demande_creation', component: CreationComponent },
       { path: 'demande_liste', component: ListeDemandeComponent },
 
