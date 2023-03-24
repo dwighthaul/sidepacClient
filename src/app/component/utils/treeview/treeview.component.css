@@ -1,0 +1,19 @@
+.treeview_item_div {
+  position: relative;
+  padding: 1rem 1rem;
+  margin-bottom: 1rem;
+  border: 1px solid #d3d6d8;
+  border-radius: 0.25rem;
+}
+
+.treeview_item_div .collapse {
+  display: none;
+}
+
+.treeview_item_button {
+  float: right;
+}
+
+li .treeview_item, ul .treeview_item  {
+  list-style-type: none;
+}

@@ -1,0 +1,21 @@
+<div *ngFor="let item of items; index as i;">
+  <div class="treeview_item_div">
+    {{ item.text }}
+    <span *ngIf="config.displayDebug">
+      | Collapse : {{ (level > config.nbrLevelDisplay) }}
+      | level : {{ level }}
+      | config#level : {{ config.nbrLevelDisplay }}
+      | item#collapsed : {{ item.collapsed }}
+    </span>
+    <button class="btn btn btn-success treeview_item_button" *ngIf="item.children && item.children.length > 0"
+      (click)="toggleAffichage(item)">
+      <span *ngIf="item.collapsed">Déplier</span>
+      <span *ngIf="!item.collapsed">Enroule</span>
+    </button>
+
+  </div>
+  <ul class="treeview_item" *ngIf="!item.collapsed">
+    <app-treeview [items]="item.children" [config]="config" [level]="level + 1" [id]="id + '_' + i"></app-treeview>
+
+  </ul>
+</div>

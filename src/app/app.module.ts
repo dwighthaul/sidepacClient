@@ -20,6 +20,8 @@ import { ListeComponent } from './pages/demande/liste/liste.component';
 import { AccueilComponent } from './pages/accueil/accueil.component';
 import { RechercheTiersComponent } from './component/demande/structure/recherche-tiers/recherche-tiers.component';
 import { ServicesComponent } from './pages/referentiel/services/services.component';
+import { TreeviewModule } from '@charmedme/ngx-treeview';
+import { TreeviewComponent } from './component/utils/treeview/treeview.component';
 
 @NgModule({
   declarations: [
@@ -37,14 +39,17 @@ import { ServicesComponent } from './pages/referentiel/services/services.compone
     ListeComponent,
     AccueilComponent,
     RechercheTiersComponent,
-    ServicesComponent
+    ServicesComponent,
+    TreeviewComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     NgbModule,
     FormsModule,
+    TreeviewModule.forRoot(),
     RouterModule.forRoot([
+      { path: '', component: AccueilComponent },
       { path: 'refServices', component: ServicesComponent },
       { path: 'demande_creation', component: CreationComponent },
       { path: 'demande_liste', component: ListeDemandeComponent },

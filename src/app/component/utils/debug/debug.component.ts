@@ -21,7 +21,7 @@ export class DebugComponent implements OnInit {
     this.route.queryParams
       .subscribe(params => {
         console.log(params);
-        this.estDebug = (params['estDebug']) ? true : false;
+        this.estDebug = (params['debug']) ? true : false;
       }
       );
   }
