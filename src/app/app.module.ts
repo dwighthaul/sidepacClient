@@ -22,6 +22,7 @@ import { RechercheTiersComponent } from './component/demande/structure/recherche
 import { ServicesComponent } from './pages/referentiel/services/services.component';
 import { TreeviewModule } from '@charmedme/ngx-treeview';
 import { TreeviewComponent } from './component/utils/treeview/treeview.component';
+import { DetailLignesComponent } from './component/demande/detail-lignes/detail-lignes.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { TreeviewComponent } from './component/utils/treeview/treeview.component
     AccueilComponent,
     RechercheTiersComponent,
     ServicesComponent,
-    TreeviewComponent
+    TreeviewComponent,
+    DetailLignesComponent
   ],
   imports: [
     BrowserModule,

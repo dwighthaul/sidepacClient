@@ -1,7 +1,7 @@
 import { Onglet } from './../../../model/structure/Onglet';
 import { ListeDonnees } from './../../../model/listeDonnees';
 import { Component, Input, OnInit, TemplateRef, ViewChild } from '@angular/core';
-import { Tiers, Demande } from 'src/app/model/sidepa';
+import { Tiers, Demande, Ligne, RefTypeLigne } from 'src/app/model/sidepa';
 import { NgbModal, NgbModalConfig, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -14,6 +14,7 @@ export class DetailComponent implements OnInit {
   onglets: Onglet[];
   ongletActif !: Onglet;
   tiersSelectionneRecherche !: Tiers;
+  ligneEnCoursEdition: Ligne;
 
   @Input()
   estEditable!: boolean;
@@ -27,6 +28,10 @@ export class DetailComponent implements OnInit {
   @ViewChild('rechercheTiersModale')
   public rechercheTiersModale!: TemplateRef<any>;
   modaleReference: NgbModalRef;
+
+  @ViewChild('ajoutLigneModale')
+  public ajoutLigneModale!: TemplateRef<any>;
+  modaleLigneReference: NgbModalRef;
 
   constructor(private modalService: NgbModal, config: NgbModalConfig) {
 
@@ -49,6 +54,32 @@ export class DetailComponent implements OnInit {
     );
 
   }
+
+  ajouterLigne() {
+    console.log("ajouterLigne");
+    this.ligneEnCoursEdition = new Ligne();
+
+    this.modaleLigneReference = this.modalService.open(this.ajoutLigneModale);
+    this.modaleLigneReference.result.then(
+      (result) => {
+        console.log("result", result);
+      },
+      (reason) => {
+      }
+    );
+  }
+
+  validerAjoutLigne() {
+    console.log("ajouterLigne");
+    if (!this.demande.lignes) {
+      this.demande.lignes = []
+    }
+
+    this.demande.lignes.push(this.ligneEnCoursEdition);
+    this.modaleLigneReference.close();
+
+  }
+
 
   validerSelectionTiers() {
     if (this.tiersSelectionneRecherche) {

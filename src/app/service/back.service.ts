@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-import { Demande, Service, Tiers } from '../model/sidepa';
+import { Demande, RefTypeLigne, Service, Tiers } from '../model/sidepa';
 import { DemandeDTO } from './../model/dto/demandeDTO.model';
 
 const BASE_URL = 'http://localhost:8080';
@@ -24,7 +24,12 @@ export class BackService {
   }
 
   recuperationServices(callback: Function) {
-    return this.http.get<Service[]>(BASE_URL_DATA + '/service/all').subscribe((data: Service[]) => {
+    return this.http.get<Service[]>(BASE_URL_DATA + '/service').subscribe((data: Service[]) => {
+      callback(data);
+    });
+  }
+  recuperationRefTypeLigne(callback: Function) {
+    return this.http.get<Service[]>(BASE_URL_DATA + '/refTypeLigne').subscribe((data: RefTypeLigne[]) => {
       callback(data);
     });
   }

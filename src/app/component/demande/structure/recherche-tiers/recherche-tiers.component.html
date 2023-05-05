@@ -2,11 +2,11 @@
   <div class="row">
     <div class="col-10">
       <input autofocus class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"
-        (keyup.enter)="rechercherTiers()" [(ngModel)]="filtreRecherche">
+        id="inp_recherche_tiers" (keyup.enter)="rechercherTiers()" [(ngModel)]="filtreRecherche">
     </div>
     <div class="col-2">
       <button [disabled]="!filtreRecherche || filtreRecherche ===''" class="btn btn-outline-success my-2 my-sm-0"
-        type="submit" (click)="rechercherTiers()">Search</button>
+        id="btn_lancer_recherche_tiers" type="submit" (click)="rechercherTiers()">Search</button>
     </div>
   </div>
   <div class="row">
@@ -17,7 +17,7 @@
   <div class="row">
     <div class="col-6">
       <div *ngIf="listeTiers">
-        <table class="table">
+        <table class="table" id="tbl_result_tiers">
           <thead>
             <tr>
               <th>Numéro</th>
@@ -25,7 +25,8 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let tiers of listeTiers" (click)="selectionnerTiers(tiers)">
+            <tr [id]="'tr_recherche_tiers_' + tiers.id" *ngFor="let tiers of listeTiers"
+              (click)="selectionnerTiers(tiers)">
               <td>{{ tiers.numeroTiers }}</td>
               <td>{{ tiers.nomOuRaisonSocial }}</td>
             </tr>

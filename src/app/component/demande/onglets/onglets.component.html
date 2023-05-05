@@ -1,4 +1,4 @@
 <ul class="steps">
-  <li [ngClass]="{active : onglet.id == ongletActif?.id}" *ngFor="let onglet of onglets"
+  <li [ngClass]="{active : onglet.id == ongletActif?.id}" *ngFor="let onglet of onglets" [id]="'onglet_navigation_' + onglet.etape" 
     (click)="selectionneOnglet(onglet)">{{ onglet.libelle }}</li>
-</ul>
+</ul>'

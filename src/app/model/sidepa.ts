@@ -10,6 +10,7 @@ export class Demande {
   codeIban!: string;
   tiers!: Tiers;
   wf!: Workflow[];
+  lignes: Ligne[];
   service!: Service;
 
   _dernierStatus !: string;
@@ -17,10 +18,24 @@ export class Demande {
   _ibanDetail !: string;
 }
 
+export class Ligne {
+  id: number;
+  typeLigne: RefTypeLigne;
+  montant: number;
+  nombreDeJour: number;
+  description: string;
+}
+
 export class RefEtat {
   id!: number;
   code!: string;
   libelle!: string;
+}
+
+export class RefTypeLigne {
+  id: number;
+  code: string;
+  libelle: string;
 }
 
 export class Tiers {

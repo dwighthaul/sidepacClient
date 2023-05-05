@@ -1,6 +1,6 @@
 import { BackService } from 'src/app/service/back.service';
 import { ListeDonnees } from 'src/app/model/listeDonnees';
-import { Demande, Service } from 'src/app/model/sidepa';
+import { Demande, RefTypeLigne, Service } from 'src/app/model/sidepa';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -19,9 +19,13 @@ export class CreationComponent implements OnInit {
 
     this.listeDonnees = new ListeDonnees();
     this.backService.recuperationServices((services: Service[]) => {
-      this.listeDonnees.services = services;
+      this.listeDonnees.services = services
+    })
+    this.backService.recuperationRefTypeLigne((typeLignes: RefTypeLigne[]) => {
+      this.listeDonnees.typeLignes = typeLignes
 
     })
+
   }
 
   ngOnInit(): void {

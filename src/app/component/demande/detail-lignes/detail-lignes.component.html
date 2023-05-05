@@ -1,0 +1,22 @@
+<div class="row" *ngFor="let ligne of demande.lignes">
+    <pre>{{ ligne | json }}</pre>
+
+</div>
+
+
+<table class="table" id="tbl_result_tiers">
+    <thead>
+        <tr>
+            <th>Description</th>
+            <th>Type ligne</th>
+            <th>Nom</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr [id]="'tr_ligne_' + ligne.id" *ngFor="let ligne of demande.lignes">
+            <td>{{ ligne.description }}</td>
+            <td>{{ ligne.typeLigne.code }}</td>
+            <td>{{ ligne.montant }}</td>
+        </tr>
+    </tbody>
+</table>
