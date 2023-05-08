@@ -7,5 +7,22 @@ button.large {
   width: 100%;
 }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+
+.required-asterisk {
+  color: red;
+  font-size: 1.2em;
+}
+
+.required-asterisk:before {
+  content: "\00a0 ";
+}

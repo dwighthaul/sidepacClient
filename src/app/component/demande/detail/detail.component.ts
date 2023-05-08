@@ -14,7 +14,6 @@ export class DetailComponent implements OnInit {
   onglets: Onglet[];
   ongletActif !: Onglet;
   tiersSelectionneRecherche !: Tiers;
-  ligneEnCoursEdition: Ligne;
 
   @Input()
   estEditable!: boolean;
@@ -29,9 +28,6 @@ export class DetailComponent implements OnInit {
   public rechercheTiersModale!: TemplateRef<any>;
   modaleReference: NgbModalRef;
 
-  @ViewChild('ajoutLigneModale')
-  public ajoutLigneModale!: TemplateRef<any>;
-  modaleLigneReference: NgbModalRef;
 
   constructor(private modalService: NgbModal, config: NgbModalConfig) {
 
@@ -52,31 +48,6 @@ export class DetailComponent implements OnInit {
       (reason) => {
       }
     );
-
-  }
-
-  ajouterLigne() {
-    console.log("ajouterLigne");
-    this.ligneEnCoursEdition = new Ligne();
-
-    this.modaleLigneReference = this.modalService.open(this.ajoutLigneModale);
-    this.modaleLigneReference.result.then(
-      (result) => {
-        console.log("result", result);
-      },
-      (reason) => {
-      }
-    );
-  }
-
-  validerAjoutLigne() {
-    console.log("ajouterLigne");
-    if (!this.demande.lignes) {
-      this.demande.lignes = []
-    }
-
-    this.demande.lignes.push(this.ligneEnCoursEdition);
-    this.modaleLigneReference.close();
 
   }
 

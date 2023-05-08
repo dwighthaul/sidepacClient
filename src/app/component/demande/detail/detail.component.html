@@ -15,16 +15,15 @@
       </div>
       <div class="col-6">
         <label for="status">Status</label>
-        <input [readonly]="true" readonly disabled class="form-control" type="text" name="status"
-          [(ngModel)]="demande._dernierStatus" required />
+        <input readonly disabled class="form-control" type="text" name="status" [(ngModel)]="demande._dernierStatus" />
       </div>
     </div>
 
     <div class="row">
       <div class="col-12">
         <label for="description">Service</label>
-        <select [disabled]="!estEditable" class="form-select" [(ngModel)]="demande.service.id" id="sel_service"
-          aria-label="Default select example">
+        <select [disabled]="!estEditable" required class="form-select" [(ngModel)]="demande.service.id"
+          id="sel_service">
           <option *ngFor="let service of listeDonnees.services" [value]="service.id">{{ service.path }}</option>
         </select>
       </div>
@@ -55,11 +54,7 @@
 
 <div class="form-group" *ngIf="ongletActif?.id === 2">
   <div class="container">
-    <div class="row">
-      <button class="large btn btn-success" id="btn_ligne_ajouter" (click)="ajouterLigne()">Creer une ligne</button>
-    </div>
-    <app-detail-lignes [demande]="demande"></app-detail-lignes>
-
+    <app-detail-lignes [demande]="demande" [listeDonnees]="listeDonnees" [estEditable]="true"></app-detail-lignes>
   </div>
 </div>
 
@@ -89,61 +84,4 @@
       </div>
     </div>
   </div>
-</ng-template>
-
-<ng-template #ajoutLigneModale let-modal>
-  <div class="modal-header">
-    <h2>Ajout ligne</h2>
-  </div>
-  <div class="modal-body">
-    <app-debug [objectDebug]="ligneEnCoursEdition" [objectNom]="'ligneEnCoursEdition'"></app-debug>
-    <app-debug [objectDebug]="listeDonnees.typeLignes" [objectNom]="'listeDonnees.typeLignes'"></app-debug>
-
-    <div class="row">
-      <div class="col-6">
-        <label for="inp_ligne_description">Description</label>
-        <input [disabled]="!estEditable" class="form-control" type="text" name="inp_ligne_description"
-          id="inp_ligne_description" [(ngModel)]="ligneEnCoursEdition.description" required />
-      </div>
-
-      <div class="col-6">
-
-
-
-        <label for="sec_ligne_typeLigne">Type de ligne</label>
-        <select [disabled]="!estEditable" class="form-select" [(ngModel)]="ligneEnCoursEdition.typeLigne"
-          id="sec_ligne_typeLigne" aria-label="Default select example">
-          <option *ngFor="let typeLigne of listeDonnees.typeLignes" [ngValue]="typeLigne">{{ typeLigne.libelle }}
-          </option>
-        </select>
-      </div>
-
-    </div>
-    <div class="row">
-      <div class="col-6">
-        <label for="inp_ligne_montant">TJM</label>
-        <input [disabled]="!estEditable" type="number" class="form-control" type="text" name="inp_ligne_montant"
-          id="inp_ligne_montant" [(ngModel)]="ligneEnCoursEdition.montant" required />
-      </div>
-      <div class="col-6">
-        <label for="inp_ligne_nombreDeJour">Nombre de jours</label>
-        <input [disabled]="!estEditable" class="form-control" type="text" name="inp_ligne_nombreDeJour"
-          id="inp_ligne_nombreDeJour" [(ngModel)]="ligneEnCoursEdition.nombreDeJour" required />
-      </div>
-    </div>
-
-
-    <hr>
-    <div class="row">
-      <div class="col-6">
-        <button class="btn btn-outline-success my-2 my-sm-0 large" (click)="modal.dismiss()">Fermer</button>
-      </div>
-      <div class="col-6">
-        <button class="btn btn-success my-2 my-sm-0 large" id="btn_selectionner_tiers"
-          (click)="validerAjoutLigne()">Valider la ligne</button>
-
-      </div>
-    </div>
-  </div>
-
 </ng-template>

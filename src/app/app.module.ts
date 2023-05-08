@@ -23,6 +23,7 @@ import { ServicesComponent } from './pages/referentiel/services/services.compone
 import { TreeviewModule } from '@charmedme/ngx-treeview';
 import { TreeviewComponent } from './component/utils/treeview/treeview.component';
 import { DetailLignesComponent } from './component/demande/detail-lignes/detail-lignes.component';
+import { MarkAsteriskDirective } from './directives/mark-asterisk.directive';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { DetailLignesComponent } from './component/demande/detail-lignes/detail-
     RechercheTiersComponent,
     ServicesComponent,
     TreeviewComponent,
-    DetailLignesComponent
+    DetailLignesComponent,
+    MarkAsteriskDirective
   ],
   imports: [
     BrowserModule,
